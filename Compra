@@ -1,0 +1,38 @@
+# AppBimestre
+Mercadoria
+package com.example.denis.trabalhofacul;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class Compra extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_compra);
+
+        Bundle args = getIntent().getExtras();
+        String resultado = args.getString("compra");
+
+        TextView txt_resultado = (TextView)findViewById(R.id.txtcompra);
+        txt_resultado.setText(resultado);
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent){
+        View linhaView = LayoutInflater.from(contexto).inflate(R.layout.linha, parent,false);
+        TextView nome =(TextView)linhaView.findViewById(R.id.linha_nome);
+        TextView estado =(TextView)linhaView.findViewById(R.id.Linha_estado);
+        ImageView imagem =(ImageView)linhaView.findViewById(R.id.linha_img);
+        nome.setText(times.get(position).getNome());
+        estado.setText(times.get(position).getEstado());
+        imagem.setImageResource(times.get(position).getImagem());
+        return linhaView;
+    }
+}
